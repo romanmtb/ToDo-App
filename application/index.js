@@ -1,8 +1,16 @@
-function hello() {
-  let divHello = document.createElement('div');
-  divHello.innerText = 'Hello';
-  document.body.appendChild(divHello);
-};
+class Task {
+  constructor(text) {
+    this.id = (new Date).getTime();
+    this.text = text;
+    this.status = false;
+    this.position = true;
+  }
 
+  taskTrue() {
+    this.status = true;
+  }
 
-hello();
+  taskFalse() {
+    this.status = false;
+  }
+}

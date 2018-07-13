@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("function hello() {\n  let divHello = document.createElement('div');\n  divHello.innerText = 'Hello';\n  document.body.appendChild(divHello);\n};\n\n\nhello();\n\n\n//# sourceURL=webpack:///./application/index.js?");
+eval("class Task {\n  constructor(text) {\n    this.id = (new Date).getTime();\n    this.text = text;\n    this.status = false;\n    this.position = true;\n  }\n\n  taskTrue() {\n    this.status = true;\n  }\n\n  taskFalse() {\n    this.status = false;\n  }\n}\n\n\n//# sourceURL=webpack:///./application/index.js?");
 
 /***/ })
 
