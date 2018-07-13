@@ -14,3 +14,18 @@ class Task {
     this.status = false;
   }
 }
+
+
+
+function renderTask(task, resultBlock) {
+  let li = document.createElement('li');
+  li.innerText = task.text;
+  resultBlock.appendChild(li);
+};
+
+
+let b = new Task('this is new Task');
+renderTask(a, todo_app);
+
+let c = new Task('this is new Task');
+renderTask(a, todo_app);
