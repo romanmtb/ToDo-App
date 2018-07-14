@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("class Task {\n  constructor(text) {\n    this.id = (new Date).getTime();\n    this.text = text;\n    this.status = false;\n    this.position = true;\n  }\n\n  taskTrue() {\n    this.status = true;\n  }\n\n  taskFalse() {\n    this.status = false;\n  }\n}\n\n\n//# sourceURL=webpack:///./application/index.js?");
+eval("function Task(text) {\n\n  this.id = new Date().getTime().toString();\n  this.text = text;\n\n}\n\nTask.prototype.validate = function(newData) {\n    var data = newData || this;\n    if (!data.text || typeof data.text !== \"string\" || data.text === \"\") {\n      return false;\n    }\n    return true;\n};\n\nTask.prototype.update = function (data) {\n  if (!this.validate(data)) {\n    return false;\n  }\n  Object.keys(data).forEach(function(key){\n    this[key] = data[key];\n  }.bind(this));\n  return this;\n};\n\n\nfunction TaskCounterUI(container, list) {\n\n  this.list = list;\n  this.cacheElements(container);\n  this.bindEvents();\n  this.update();\n\n}\n\nTaskCounterUI.prototype.cacheElements = function (container) {\n  this.container = document.querySelector(container);\n};\n\nTaskCounterUI.prototype.bindEvents = function () {\n  document.addEventListener(this.list.model.eventKeys.taskAdded, this.update.bind(this));\n  document.addEventListener(this.list.model.eventKeys.taskRemoved, this.update.bind(this));\n};\n\nTaskCounterUI.prototype.update = function (event) {\n  this.container.textContent = this.list.model.count;\n};\n\n\n//# sourceURL=webpack:///./application/index.js?");
 
 /***/ })
 
