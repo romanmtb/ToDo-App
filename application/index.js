@@ -1,31 +1,24 @@
-class Task {
-  constructor(text) {
-    this.id = (new Date).getTime();
-    this.text = text;
-    this.status = false;
-    this.position = true;
-  }
+function Task(text) {
 
-  taskTrue() {
-    this.status = true;
-  }
+  this.id = new Date().getTime().toString();
+  this.text = text;
 
-  taskFalse() {
-    this.status = false;
-  }
 }
 
-
-
-function renderTask(task, resultBlock) {
-  let li = document.createElement('li');
-  li.innerText = task.text;
-  resultBlock.appendChild(li);
+Task.prototype.validate = function(newData) {
+    var data = newData || this;
+    if (!data.text || typeof data.text !== "string" || data.text === "") {
+      return false;
+    }
+    return true;
 };
 
-
-let b = new Task('this is new Task');
-renderTask(a, todo_app);
-
-let c = new Task('this is new Task');
-renderTask(a, todo_app);
+Task.prototype.update = function (data) {
+  if (!this.validate(data)) {
+    return false;
+  }
+  Object.keys(data).forEach(function(key){
+    this[key] = data[key];
+  }.bind(this));
+  return this;
+};
