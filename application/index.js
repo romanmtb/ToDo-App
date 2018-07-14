@@ -37,13 +37,13 @@ TaskCounterUI.prototype.cacheElements = function (container) {
   this.container = document.querySelector(container);
 };
 
+TaskCounterUI.prototype.update = function (event) {
+  this.container.textContent = this.list.model.count;
+};
+
 TaskCounterUI.prototype.bindEvents = function () {
   document.addEventListener(this.list.model.eventKeys.taskAdded, this.update.bind(this));
   document.addEventListener(this.list.model.eventKeys.taskRemoved, this.update.bind(this));
-};
-
-TaskCounterUI.prototype.update = function (event) {
-  this.container.textContent = this.list.model.count;
 };
 
 function TaskList(container) {
