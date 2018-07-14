@@ -45,3 +45,23 @@ TaskCounterUI.prototype.bindEvents = function () {
 TaskCounterUI.prototype.update = function (event) {
   this.container.textContent = this.list.model.count;
 };
+
+function TaskList(container) {
+
+  this.id = container.replace('#', '');
+  this.tasks = [];
+  this.count = 0;
+
+  this.eventKeys = {
+    taskAdded: this.id + ':task:added',
+    taskUpdated: this.id + ':task:updated',
+    taskRemoved: this.id + ':task:removed'
+  };
+
+  this.events = {
+    taskAdded: new Event(this.eventKeys.taskAdded),
+    taskUpdated: new Event(this.eventKeys.taskUpdated),
+    taskRemoved: new Event(this.eventKeys.taskRemoved)
+  };
+
+}
