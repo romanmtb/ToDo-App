@@ -65,3 +65,6 @@ function TaskList(container) {
   };
 
 }
+
+var list1 = new TaskListUI('#tasks');
+var list1Counter = new TaskCounterUI('#tasks-counter', list1);
