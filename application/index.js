@@ -211,6 +211,12 @@ TaskListUI.prototype.renderButton = function (action, id, text) {
   btn.dataset.action = action;
   btn.dataset.id = id;
 
+  var btn = document.createElement('a');
+  btn.setAttribute('href', '#');
+  btn.classList.add('grey-text', 'right');
+  btn.dataset.action = action;
+  btn.dataset.id = id;
+
   // var icon = document.createElement('i');
   // icon.classList.add('material-icons');
   // icon.textContent = text;
