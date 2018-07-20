@@ -231,3 +231,5 @@ TaskListUI.prototype.renderButton = function (action, id, text) {
 
 var list1 = new TaskListUI('#tasks');
 var list1Counter = new TaskCounterUI('#tasks-counter', list1);
+
+new TaskTotalUI('#total', [list1, list2]);
