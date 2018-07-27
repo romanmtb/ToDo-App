@@ -28,8 +28,8 @@ function TaskCounterUI(container, list) {
 
   this.list = list;
   this.cacheElements(container);
-  this.bindEvents();
   this.update();
+  this.bindEvents();
 
 }
 
