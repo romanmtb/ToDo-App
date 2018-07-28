@@ -28,8 +28,8 @@ function TaskCounterUI(container, list) {
 
   this.list = list;
   this.cacheElements(container);
-  this.update();
   this.bindEvents();
+  this.update();
 
 }
 
@@ -233,3 +233,4 @@ var list1 = new TaskListUI('#tasks');
 var list1Counter = new TaskCounterUI('#tasks-counter', list1);
 
 new TaskTotalUI('#total', [list1, list2]);
+console.log( [list1, list2] );
