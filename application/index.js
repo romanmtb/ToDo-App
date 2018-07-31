@@ -17,6 +17,9 @@ Task.prototype.update = function (data) {
   if (!this.validate(data)) {
     return false;
   }
+  if (!this.validate(data)) {
+    return false;
+  }
   Object.keys(data).forEach(function(key){
     this[key] = data[key];
   }.bind(this));
