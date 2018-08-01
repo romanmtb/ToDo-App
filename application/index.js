@@ -30,7 +30,7 @@ Task.prototype.update = function (data) {
 function TaskCounterUI(container, list) {
 
   this.list = list;
-  this. (container);
+  this.cacheElements(container);
   this.bindEvents();
   this.update();
 
