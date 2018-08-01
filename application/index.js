@@ -257,6 +257,13 @@ TaskTotalUI.prototype.bindEvents = function () {
 
 };
 
+TaskTotalUI.prototype.render = function () {
+
+  this.container.textContent = this.total;
+  console.log( this.total );
+
+};
+
 TaskTotalUI.prototype.update = function (event) {
 
   this.total = 0;
@@ -269,11 +276,7 @@ TaskTotalUI.prototype.update = function (event) {
 
 };
 
-TaskTotalUI.prototype.render = function () {
 
-  this.container.textContent = this.total;
-
-};
 
 
 
