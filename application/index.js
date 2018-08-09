@@ -265,15 +265,12 @@ TaskTotalUI.prototype.render = function () {
 };
 
 TaskTotalUI.prototype.update = function (event) {
-
   this.total = 0;
 
   this.lists.forEach(function(list){
     this.total += list.model.count;
   }.bind(this));
-
   this.render();
-
 };
 
 
