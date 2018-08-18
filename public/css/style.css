@@ -1,3 +1,33 @@
-* {
-  color: red;
+main {
+    padding-top: 32px;
+}
+.clear::after {
+  content: ' ';
+  display: table;
+  clear: both;
+}
+li input {
+  display: none;
+}
+.edit-mode span {
+  display: none;
+}
+.edit-mode input {
+  width: 70%;
+  display: block;
+}
+.count {
+  display: inline-block;
+  padding: 0px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: #fff;
+}
+.total-in-lists {
+  padding: 16px;
+  text-align: center;
+}
+
+h1, h4 {
+  font-family: Helvetica;
 }
