@@ -65,9 +65,9 @@ class TaskListUI {
   }
 
   removeTask(event) {
-    console.log(event)
     if (!event.target.dataset.id) {
-      alert("The task ID is required");
+      //In production case, alerting in application is harassment for user
+      console.warn('Task ID is required');
       return;
     }
     let task = this.model.getTask(event.target.dataset.id);
@@ -79,7 +79,8 @@ class TaskListUI {
   renderList() {
     this.list.innerHTML = "";
 
-    let tasks = this.model.getTasks();
+    //I've replaced getTasks to getter tasks, this makes code clear
+    let tasks = this.model.tasks;
 
     if (tasks.length < 1) {
       let li = document.createElement("li");

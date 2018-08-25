@@ -1,8 +1,8 @@
 class TaskList {
   constructor(container) {
     this.id = container.replace("#", "");
-    this.tasks = [];
     this.count = 0;
+    this._tasks = []; //underscore placed in variable name means private property
 
     this.eventKeys = {
       taskAdded: this.id + ":task:added",
@@ -19,7 +19,7 @@ class TaskList {
     if (!task.validate()) {
       return;
     }
-    this.tasks.push(task);
+    this._tasks.push(task);
     this.count++;
     this.events.taskAdded.task = task;
     this.events.taskAdded.count = this.count;
@@ -28,21 +28,21 @@ class TaskList {
   }
 
   removeTask(task) {
-    let idx = this.tasks.indexOf(task);
-    this.tasks.splice(idx, 1);
+    let idx = this._tasks.indexOf(task);
+    this._tasks.splice(idx, 1);
     this.count--;
     this.events.taskRemoved.count = this.count;
     document.dispatchEvent(this.events.taskRemoved);
   }
 
-  getTasks() {
-    return this.tasks;
+
+  get tasks() {
+    return this._tasks;
   }
 
   getTask(id) {
-    return this.tasks.find(function(task) {
-      return task.id === id;
-    });
+    //Looks simply with arrow function, isn't it?)
+    return this._tasks.find(task => task.id === id);
   }
 }
 
