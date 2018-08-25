@@ -33,8 +33,7 @@ class TaskListUI {
     event.preventDefault();
     //'text' is not clear, so I've changed to inputText
     let inputText = this.form.querySelector("input").value;
-    if (inputText === '') return
-    console.log('add event')
+    if (inputText === '') return;
 
     let task = new Task(inputText);
     this.model.addTask(task);
@@ -42,27 +41,8 @@ class TaskListUI {
     this.form.querySelector("input").focus();
   }
 
-  //No task update
-/*
-  updateTask(event) {
-    console.log('update')
-    let li = event.target.closest("li");
-    let result = this.model.updateTask(li.dataset.id, {
-      text: event.target.value
-    });
-    if (result) {
-      li.classList.remove("edit-mode");
-      let span = li.querySelector("span");
-      span.textContent = result.text;
-    }
-  }
-*/
-
   updateTaskOnKeyPress(event) {
-    console.log('!|||');
-
     if (event.which === 13) {
-      console.log('!');
       this.addTask.call(this, event);
       //no edit possible
       // this.updateTask.call(this, event);
@@ -77,9 +57,7 @@ class TaskListUI {
     }
     let task = this.model.getTask(event.target.dataset.id);
     let sure = confirm('Delete task "' + task.text + '"?');
-    if (sure) {
-      this.model.removeTask(task);
-    }
+    if (sure) this.model.removeTask(task);
   }
 
   renderList() {
@@ -91,12 +69,9 @@ class TaskListUI {
     if (tasks.length < 1) {
       let li = document.createElement("li");
       li.classList.add("collection-item", "grey", "lighten-3");
-
       let span = document.createElement("span");
       span.textContent = "There is no tasks! Take a break ☕️";
-
       li.appendChild(span);
-
       this.list.appendChild(li);
       //there is no sense to add empty return at function end
     }
@@ -106,6 +81,8 @@ class TaskListUI {
         this.renderTask(task);
       }.bind(this)
     );
+
+    //If renderTask will be undefined, add empty return here
   }
 
   renderTask(task) {
@@ -136,7 +113,7 @@ class TaskListUI {
 
     //there is no editTask stuff at all
     // div.addEventListener("click", this.editTask);
-    input.addEventListener("blur", this.updateTask.bind(this));
+    // input.addEventListener("blur", this.updateTask.bind(this));
     input.addEventListener("keypress", this.updateTaskOnKeyPress.bind(this));
     btnRemove.addEventListener("click", this.removeTask.bind(this));
   }
