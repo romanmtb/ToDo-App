@@ -11,18 +11,12 @@ class TaskCounterUI {
   }
 
   bindEvents() {
-    document.addEventListener(
-      this.list.model.eventKeys.taskAdded,
-      this.update.bind(this)
-    );
-    document.addEventListener(
-      this.list.model.eventKeys.taskRemoved,
-      this.update.bind(this)
-    );
+    document.addEventListener(this.list.model.eventKeys.taskAdded,this.update.bind(this));
+    document.addEventListener(this.list.model.eventKeys.taskRemoved,this.update.bind(this));
   }
 
-  // fixme unused parameter
-  update(event) {
+  //event was unused pass param
+  update() {
     this.container.textContent = this.list.model.count;
   }
 }

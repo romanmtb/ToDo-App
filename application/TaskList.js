@@ -16,25 +16,23 @@ class TaskList {
   }
 
   addTask(task) {
-    if (!task.validate()) {
-      return;
-    }
+    if (!task.validate()) return;
     this._tasks.push(task);
-    this.count++;
     this.events.taskAdded.task = task;
-    this.events.taskAdded.count = this.count;
+    //pre increment: you add +1 to this.count and then assign incremented value to task's added count
+    this.events.taskAdded.count = ++this.count;
     document.dispatchEvent(this.events.taskAdded);
     return task;
   }
 
   removeTask(task) {
+    // (?) I don't know, about, can you receive case when you're can fail on uncreated item
+    if (!task.validate()) return;
     let idx = this._tasks.indexOf(task);
     this._tasks.splice(idx, 1);
-    this.count--;
-    this.events.taskRemoved.count = this.count;
+    this.events.taskRemoved.count = --this.count;
     document.dispatchEvent(this.events.taskRemoved);
   }
-
 
   get tasks() {
     return this._tasks;

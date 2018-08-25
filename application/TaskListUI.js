@@ -19,34 +19,33 @@ class TaskListUI {
 
   bindEvents() {
     this.form.addEventListener("submit", this.addTask.bind(this));
-    document.addEventListener(
-      this.model.eventKeys.taskAdded,
-      this.renderList.bind(this)
-    );
-    document.addEventListener(
-      this.model.eventKeys.taskAdded,
-      this.formClearer.bind(this)
-    );
-    document.addEventListener(
-      this.model.eventKeys.taskRemoved,
-      this.renderList.bind(this)
-    );
+    document.addEventListener(this.model.eventKeys.taskAdded, this.renderList.bind(this));
+    document.addEventListener(this.model.eventKeys.taskAdded, this.formClearer.bind(this));
+    document.addEventListener(this.model.eventKeys.taskRemoved, this.renderList.bind(this));
   }
 
-  formClearer(event) {
+  // Unused parameter
+  formClearer() {
     this.form.taskText.value = "";
   }
 
   addTask(event) {
     event.preventDefault();
-    let text = this.form.querySelector("input").value;
-    let task = new Task(text);
+    //'text' is not clear, so I've changed to inputText
+    let inputText = this.form.querySelector("input").value;
+    if (inputText === '') return
+    console.log('add event')
+
+    let task = new Task(inputText);
     this.model.addTask(task);
     //better way to keep great UX
     this.form.querySelector("input").focus();
   }
 
+  //No task update
+/*
   updateTask(event) {
+    console.log('update')
     let li = event.target.closest("li");
     let result = this.model.updateTask(li.dataset.id, {
       text: event.target.value
@@ -57,10 +56,16 @@ class TaskListUI {
       span.textContent = result.text;
     }
   }
+*/
 
   updateTaskOnKeyPress(event) {
+    console.log('!|||');
+
     if (event.which === 13) {
-      this.updateTask.call(this, event);
+      console.log('!');
+      this.addTask.call(this, event);
+      //no edit possible
+      // this.updateTask.call(this, event);
     }
   }
 
@@ -76,6 +81,7 @@ class TaskListUI {
       this.model.removeTask(task);
     }
   }
+
   renderList() {
     this.list.innerHTML = "";
 
@@ -87,13 +93,12 @@ class TaskListUI {
       li.classList.add("collection-item", "grey", "lighten-3");
 
       let span = document.createElement("span");
-      span.textContent = "There is no tasks! Take a break...";
+      span.textContent = "There is no tasks! Take a break ☕️";
 
       li.appendChild(span);
 
       this.list.appendChild(li);
-
-      return;
+      //there is no sense to add empty return at function end
     }
 
     tasks.forEach(
@@ -129,7 +134,8 @@ class TaskListUI {
 
     this.list.appendChild(li);
 
-    div.addEventListener("click", this.editTask);
+    //there is no editTask stuff at all
+    // div.addEventListener("click", this.editTask);
     input.addEventListener("blur", this.updateTask.bind(this));
     input.addEventListener("keypress", this.updateTaskOnKeyPress.bind(this));
     btnRemove.addEventListener("click", this.removeTask.bind(this));
