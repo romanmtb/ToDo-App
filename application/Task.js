@@ -9,7 +9,6 @@ class Task {
   }
 
   validate(newData) {
-    //Instead creating if else statement, you can return logical statement in this case
     let data = newData || this;
     return !(!data.text || typeof data.text !== "string" || data.text === "");
   }
