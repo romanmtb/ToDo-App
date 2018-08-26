@@ -2,7 +2,7 @@ class TaskList {
   constructor(container) {
     this.id = container.replace("#", "");
     this.count = 0;
-    this._tasks = []; //underscore placed in variable name means private property
+    this._tasks = [];
 
     this.eventKeys = {
       taskAdded: this.id + ":task:added",
@@ -19,14 +19,12 @@ class TaskList {
     if (!task.validate()) return;
     this._tasks.push(task);
     this.events.taskAdded.task = task;
-    //pre increment: you add +1 to this.count and then assign incremented value to task's added count
     this.events.taskAdded.count = ++this.count;
     document.dispatchEvent(this.events.taskAdded);
     return task;
   }
 
   removeTask(task) {
-    // (?) I don't know, about, can you receive case when you're can fail on uncreated item
     if (!task.validate()) return;
     let idx = this._tasks.indexOf(task);
     this._tasks.splice(idx, 1);
@@ -39,7 +37,6 @@ class TaskList {
   }
 
   getTask(id) {
-    //Looks simply with arrow function, isn't it?)
     return this._tasks.find(task => task.id === id);
   }
 }
