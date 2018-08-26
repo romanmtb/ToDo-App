@@ -15,7 +15,6 @@ class TaskCounterUI {
     document.addEventListener(this.list.model.eventKeys.taskRemoved,this.update.bind(this));
   }
 
-  //event was unused pass param
   update() {
     this.container.textContent = this.list.model.count;
   }
