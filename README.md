@@ -8,3 +8,7 @@ Training task which i did to practice js oop
 ## DEVELOP LOCALLY
 
 `npm run start`
+
+## UPLOAD (SURGE)
+
+`npm run deploy` to upload it to SURGE
