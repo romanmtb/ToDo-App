@@ -4,6 +4,7 @@
   "description": "This is simple ToDo-App with vanilla js and OOP",
   "main": "index.js",
   "scripts": {
+    "prettier": "prettier --single-quote --use-tabs --trailing-comma es5 --write \"application/**/*.js\"",
     "cli": "webpack ./application/index.js --output-path ./public/js --output-filename bundle.js --env development --mode development --color --watch",
     "http":"http-server -p 3040 -d public/ -o",
     "start": "npm run cli & npm run http"
