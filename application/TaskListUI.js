@@ -24,34 +24,28 @@ class TaskListUI {
     document.addEventListener(this.model.eventKeys.taskRemoved, this.renderList.bind(this));
   }
 
-  // Unused parameter
   formClearer() {
     this.form.taskText.value = "";
   }
 
   addTask(event) {
     event.preventDefault();
-    //'text' is not clear, so I've changed to inputText
     let inputText = this.form.querySelector("input").value;
     if (inputText === '') return;
 
     let task = new Task(inputText);
     this.model.addTask(task);
-    //better way to keep great UX
     this.form.querySelector("input").focus();
   }
 
   updateTaskOnKeyPress(event) {
     if (event.which === 13) {
       this.addTask.call(this, event);
-      //no edit possible
-      // this.updateTask.call(this, event);
     }
   }
 
   removeTask(event) {
     if (!event.target.dataset.id) {
-      //In production case, alerting in application is harassment for user
       console.warn('Task ID is required');
       return;
     }
@@ -63,7 +57,6 @@ class TaskListUI {
   renderList() {
     this.list.innerHTML = "";
 
-    //I've replaced getTasks to getter tasks, this makes code clear
     let tasks = this.model.tasks;
 
     if (tasks.length < 1) {
@@ -73,7 +66,6 @@ class TaskListUI {
       span.textContent = "There is no tasks! Take a break ☕️";
       li.appendChild(span);
       this.list.appendChild(li);
-      //there is no sense to add empty return at function end
     }
 
     tasks.forEach(
@@ -82,7 +74,6 @@ class TaskListUI {
       }.bind(this)
     );
 
-    //If renderTask will be undefined, add empty return here
   }
 
   renderTask(task) {
@@ -111,9 +102,6 @@ class TaskListUI {
 
     this.list.appendChild(li);
 
-    //there is no editTask stuff at all
-    // div.addEventListener("click", this.editTask);
-    // input.addEventListener("blur", this.updateTask.bind(this));
     input.addEventListener("keypress", this.updateTaskOnKeyPress.bind(this));
     btnRemove.addEventListener("click", this.removeTask.bind(this));
   }
