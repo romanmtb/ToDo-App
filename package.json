@@ -7,7 +7,9 @@
     "prettier": "prettier --single-quote --use-tabs --trailing-comma es5 --write \"application/**/*.js\"",
     "cli": "webpack ./application/index.js --output-path ./public/js --output-filename bundle.js --env development --mode development --color --watch",
     "http":"http-server -p 3040 -d public/ -o",
-    "start": "npm run cli & npm run http"
+    "start": "npm run cli & npm run http",
+    "surge:fix-domain": "surge public/ --domain todo-vanilla-js-roman.surge.sh",
+    "deploy": "npm run surge:fix-domain"
   },
   "author": "romanalexeychenko@gmail.com",
   "license": "ISC",
